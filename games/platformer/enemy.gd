@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 60.0
+var current_speed = 60.0
 var direction = -1.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -12,6 +12,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_dead = false
 
 func _ready():
+	# Adjust speed based on difficulty
+	if GameManager.current_difficulty == "easy":
+		current_speed = 40.0
+	elif GameManager.current_difficulty == "hard":
+		current_speed = 100.0
+	else:
+		current_speed = 60.0
+		
 	# Position the floor detector raycast based on start direction
 	floor_detector.position.x = -20.0
 	hit_box.body_entered.connect(_on_hit_box_body_entered)
@@ -36,7 +44,7 @@ func _physics_process(delta):
 			floor_detector.position.x = 20.0 * direction
 			sprite.scale.x = abs(sprite.scale.x) * direction
 			
-	velocity.x = direction * SPEED
+	velocity.x = direction * current_speed
 	move_and_slide()
 
 func _on_hit_box_body_entered(body):

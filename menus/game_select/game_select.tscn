@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://menus/game_select/game_select.gd" id="1_game_select"]
+
+[node name="GameSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_game_select")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.118, 0.106, 0.294, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "SELECT MINI-GAME"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Select a game to see High Score"
+horizontal_alignment = 1
+
+[node name="DifficultyContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/DifficultyContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Difficulty:"
+
+[node name="BtnEasy" type="Button" parent="VBoxContainer/DifficultyContainer"]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Easy"
+
+[node name="BtnMedium" type="Button" parent="VBoxContainer/DifficultyContainer"]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Medium"
+
+[node name="BtnHard" type="Button" parent="VBoxContainer/DifficultyContainer"]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Hard"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="BtnPlatformer" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(240, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.7, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Platformer Collect"
+
+[node name="BtnStack" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(240, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Stack Tower"
+
+[node name="BtnTetris" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(240, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Falling Blocks"
+
+[node name="BtnGridPuzzle" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(240, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Grid Board Puzzle"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(140, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "Back"

@@ -22,7 +22,8 @@ func _on_body_entered(body):
 		
 	if body.is_in_group("player"):
 		collected = true
-		GameManager.add_score(1)
+		var player_id = body.get("player_id") if "player_id" in body else 1
+		GameManager.add_score(player_id, 1)
 		
 		# Play smooth collect animation using Tweens
 		var tween = create_tween()

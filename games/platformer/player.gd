@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 250.0
+var active_touches = {}
+
+var current_speed = 250.0
 const JUMP_VELOCITY = -500.0
 const ACCELERATION = 1200.0
 const FRICTION = 1000.0
+
+@export var player_id: int = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -11,6 +15,47 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var was_on_floor = true
 var facing_dir = 1.0
+var spawn_position: Vector2
+
+var action_left: String
+var action_right: String
+var action_jump: String
+
+const PLAYER_COLORS = {
+	1: Color(0.3, 0.7, 1.0),  # Blue
+	2: Color(1.0, 0.3, 0.3),  # Red
+	3: Color(0.3, 1.0, 0.3),  # Green
+	4: Color(1.0, 0.9, 0.3)   # Yellow
+}
+
+func _ready():
+	spawn_position = global_position
+	
+	# Adjust speed based on difficulty
+	if GameManager.current_difficulty == "easy":
+		current_speed = 200.0
+	elif GameManager.current_difficulty == "hard":
+		current_speed = 320.0
+	else:
+		current_speed = 250.0
+		
+	# Configure player-specific actions and appearance
+	action_left = "p%d_left" % player_id
+	action_right = "p%d_right" % player_id
+	action_jump = "p%d_jump" % player_id
+	
+	if sprite:
+		sprite.modulate = PLAYER_COLORS.get(player_id, Color.WHITE)
+
+func _input(event):
+	if player_id == 1:
+		if event is InputEventScreenTouch:
+			if event.pressed:
+				active_touches[event.index] = event.position
+			else:
+				active_touches.erase(event.index)
+		elif event is InputEventScreenDrag:
+			active_touches[event.index] = event.position
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -29,17 +74,31 @@ func _physics_process(delta):
 			was_on_floor = true
 	
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	var touch_jump_active = false
+	var touch_direction = 0.0
+	
+	if player_id == 1:
+		for touch_pos in active_touches.values():
+			if touch_pos.y < 360.0:
+				touch_jump_active = true
+			else:
+				if touch_pos.x < 640.0:
+					touch_direction -= 1.0
+				else:
+					touch_direction += 1.0
+					
+	var jump_triggered = Input.is_action_just_pressed(action_jump) or (touch_jump_active and is_on_floor())
+	if jump_triggered and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		# Jump stretch
 		sprite.scale = Vector2(facing_dir * 0.7, 1.3)
 		was_on_floor = false
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = touch_direction if touch_direction != 0.0 else Input.get_axis(action_left, action_right)
 	if direction != 0:
 		facing_dir = sign(direction)
-		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, direction * current_speed, ACCELERATION * delta)
 		
 		# Face direction and tilt slightly when running
 		var target_rotation = direction * 0.15
@@ -75,4 +134,13 @@ func _physics_process(delta):
 		die()
 
 func die():
-	GameManager.take_damage()
+	# Deduct score for falling/dying
+	GameManager.add_score(player_id, -1)
+	
+	# Teleport back to starting spawn position
+	global_position = spawn_position
+	velocity = Vector2.ZERO
+	sprite.rotation = 0
+	
+	# Apply landing squash effect
+	sprite.scale = Vector2(facing_dir * 1.3, 0.7)

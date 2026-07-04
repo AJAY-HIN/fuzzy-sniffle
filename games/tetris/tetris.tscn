@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://games/tetris/tetris.gd" id="1_tetris"]
+[ext_resource type="PackedScene" path="res://games/common/hud.tscn" id="2_hud"]
+
+[node name="TetrisGame" type="Node2D"]
+script = ExtResource("1_tetris")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
