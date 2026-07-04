@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bodyGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4fc3f7" />
+      <stop offset="100%" stop-color="#0288d1" />
+    </radialGradient>
+    <radialGradient id="eyeGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#006064" />
+    </radialGradient>
+  </defs>
+  <!-- Antenna -->
+  <rect x="30" y="4" width="4" height="12" fill="#37474f" rx="2" />
+  <circle cx="32" cy="4" r="4" fill="#ff1744" />
+  <!-- Body -->
+  <rect x="12" y="16" width="40" height="42" rx="20" fill="url(#bodyGrad)" stroke="#1a237e" stroke-width="2" />
+  <!-- Face Screen -->
+  <rect x="18" y="24" width="28" height="16" rx="8" fill="#263238" />
+  <!-- Eyes -->
+  <circle cx="26" cy="32" r="5" fill="url(#eyeGrad)" />
+  <circle cx="38" cy="32" r="5" fill="url(#eyeGrad)" />
+  <!-- Blush -->
+  <circle cx="21" cy="36" r="2" fill="#ff4081" opacity="0.6" />
+  <circle cx="43" cy="36" r="2" fill="#ff4081" opacity="0.6" />
+  <!-- Feet -->
+  <ellipse cx="22" cy="58" rx="6" ry="3" fill="#37474f" />
+  <ellipse cx="42" cy="58" rx="6" ry="3" fill="#37474f" />
+</svg>

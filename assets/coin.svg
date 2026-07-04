@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <radialGradient id="coinGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff176" />
+      <stop offset="70%" stop-color="#fbc02d" />
+      <stop offset="100%" stop-color="#f57f17" />
+    </radialGradient>
+  </defs>
+  <!-- Outer Rim -->
+  <circle cx="16" cy="16" r="14" fill="url(#coinGrad)" stroke="#ff9100" stroke-width="2" />
+  <!-- Inner Rim -->
+  <circle cx="16" cy="16" r="10" fill="none" stroke="#f57f17" stroke-width="1.5" stroke-dasharray="3,2" />
+  <!-- Center Star -->
+  <path d="M16 8 L18.5 13.5 L24.5 14 L20 18 L21.5 24 L16 21 L10.5 24 L12 18 L7.5 14 L13.5 13.5 Z" fill="#ffffff" opacity="0.9" />
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64" width="32" height="64">
+  <!-- Flag Pole -->
+  <rect x="6" y="4" width="4" height="56" fill="#78909c" rx="1" />
+  <!-- Flag Cloth -->
+  <path d="M10 6 L28 14 L10 22 Z" fill="#00e676" stroke="#00c853" stroke-width="1.5" />
+  <!-- Base -->
+  <rect x="2" y="60" width="12" height="4" fill="#37474f" rx="1" />
+</svg>

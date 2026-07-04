@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player_scene"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="2_coin_scene"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="3_enemy_scene"]
+[ext_resource type="PackedScene" path="res://scenes/flag.tscn" id="4_flag_scene"]
+[ext_resource type="Texture2D" path="res://assets/tile.svg" id="5_tile_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g500"]
+size = Vector2(500, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g192"]
+size = Vector2(192, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g256"]
+size = Vector2(256, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g384"]
+size = Vector2(384, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g512"]
+size = Vector2(512, 64)
+
+[node name="Level1" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -600.0
+offset_top = -600.0
+offset_right = 3000.0
+offset_bottom = 1200.0
+color = Color(0.529, 0.808, 0.922, 1)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="StartPlatform" type="StaticBody2D" parent="Platforms"]
+position = Vector2(250, 550)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/StartPlatform"]
+texture_repeat = 2
+texture = ExtResource("5_tile_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/StartPlatform"]
+shape = SubResource("RectangleShape2D_g500")
+
+[node name="FloatPlatform1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(650, 430)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/FloatPlatform1"]
+texture_repeat = 2
+texture = ExtResource("5_tile_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/FloatPlatform1"]
+shape = SubResource("RectangleShape2D_g192")
+
+[node name="FloatPlatform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(950, 320)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/FloatPlatform2"]
+texture_repeat = 2
+texture = ExtResource("5_tile_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/FloatPlatform2"]
+shape = SubResource("RectangleShape2D_g256")
+
+[node name="PatrolPlatform" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1350, 450)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/PatrolPlatform"]
+texture_repeat = 2
+texture = ExtResource("5_tile_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/PatrolPlatform"]
+shape = SubResource("RectangleShape2D_g384")
+
+[node name="EndPlatform" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1900, 550)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/EndPlatform"]
+texture_repeat = 2
+texture = ExtResource("5_tile_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/EndPlatform"]
+shape = SubResource("RectangleShape2D_g512")
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource("2_coin_scene")]
+position = Vector2(650, 350)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("2_coin_scene")]
+position = Vector2(900, 240)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("2_coin_scene")]
+position = Vector2(1000, 240)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("2_coin_scene")]
+position = Vector2(1300, 370)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("2_coin_scene")]
+position = Vector2(1400, 370)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource("3_enemy_scene")]
+position = Vector2(1350, 400)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("3_enemy_scene")]
+position = Vector2(1900, 500)
+
+[node name="Flag" parent="." instance=ExtResource("4_flag_scene")]
+position = Vector2(2050, 486)
+
+[node name="Player" parent="." instance=ExtResource("1_player_scene")]
+position = Vector2(150, 494)

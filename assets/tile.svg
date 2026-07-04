@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="grassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a3e635" />
+      <stop offset="100%" stop-color="#4d7c0f" />
+    </linearGradient>
+    <linearGradient id="dirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+  </defs>
+  <!-- Dirt Base -->
+  <rect x="0" y="16" width="64" height="48" fill="url(#dirtGrad)" />
+  <!-- Dirt Details (Stones/Texture) -->
+  <rect x="12" y="28" width="8" height="6" rx="2" fill="#451a03" opacity="0.6" />
+  <rect x="40" y="24" width="12" height="8" rx="3" fill="#451a03" opacity="0.6" />
+  <rect x="24" y="44" width="10" height="6" rx="2" fill="#451a03" opacity="0.6" />
+  <rect x="48" y="48" width="6" height="4" rx="1.5" fill="#451a03" opacity="0.6" />
+  <!-- Grass Top -->
+  <path d="M0 16 L64 16 L64 24 L56 20 L48 24 L40 18 L32 24 L24 20 L16 26 L8 18 L0 24 Z" fill="url(#grassGrad)" />
+  <rect x="0" y="0" width="64" height="16" fill="url(#grassGrad)" />
+  <!-- Subtle line separating grass and dirt -->
+  <line x1="0" y1="16" x2="64" y2="16" stroke="#365314" stroke-width="1.5" />
+</svg>
